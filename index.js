@@ -37,7 +37,7 @@ class TodoList extends Component {
   constructor() {
     super();
     this.state = {
-      todos: [
+      tasks: [
         { id: 1, text: "Сделать домашку", completed: false },
         { id: 2, text: "Сделать практику", completed: false },
         { id: 3, text: "Пойти домой", completed: false }
@@ -52,20 +52,21 @@ class TodoList extends Component {
         createElement("input", {
           id: "new-todo",
           type: "text",
-          placeholder: "Задание"
+          placeholder: "Задание",
         }),
-        createElement("button", { id: "add-btn" }, "+")
+        createElement("button", { id: "add-btn" }, "+"),
       ]),
-      createElement("ul", { id: "todos" }, this.state.todos.map(todo => {
-        return createElement("li", { key: todo.id }, [
-          createElement("input", { type: "checkbox", checked: todo.completed }),
-          createElement("label", {}, todo.text),
-          createElement("button", {}, "🗑️")
-        ]);
-      }))
+      createElement("ul", { id: "todos" }, this.state.tasks.map(task => (
+          createElement("li", {}, [
+            createElement("input", { type: "checkbox", checked: task.completed }),
+            createElement("label", {}, task.text),
+            createElement("button", {}, "🗑️")
+          ])
+      )))
     ]);
   }
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(new TodoList().getDomNode());
